@@ -1,0 +1,11 @@
+poof.proteus.works {
+    reverse_proxy poof:4000
+}
+
+# express.yourdomain.com {
+#     reverse_proxy express-app:3000
+# }
+# 
+# deno.yourdomain.com {
+#     reverse_proxy deno-app:8000
+# }

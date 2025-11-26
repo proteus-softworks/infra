@@ -1,0 +1,77 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+
+  postgres:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  poof:
+    image: ghcr.io/mauzybwy/poof:latest
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/poof_prod
+      SECRET_KEY_BASE: ${POOF_SECRET_KEY_BASE}
+      PHX_HOST: poof.yourdomain.com
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - web
+      - internal
+
+  # express-app:
+  #   image: ghcr.io/YOUR_USERNAME/express-app:latest
+  #   restart: unless-stopped
+  #   environment:
+  #     DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/express_prod
+  #     NODE_ENV: production
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - web
+  #     - internal
+  # 
+  # deno-app:
+  #   image: ghcr.io/YOUR_USERNAME/deno-app:latest
+  #   restart: unless-stopped
+  #   environment:
+  #     DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/deno_prod
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - web
+  #     - internal
+
+volumes:
+  postgres_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  web:
+  internal:
