@@ -29,12 +29,12 @@ services:
       retries: 5
 
   poof:
-    image: ghcr.io/mauzybwy/poof:latest
+    image: ghcr.io/proteus-softworks/poof:latest
     restart: unless-stopped
     environment:
       DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/poof_prod
       SECRET_KEY_BASE: ${POOF_SECRET_KEY_BASE}
-      PHX_HOST: poof.yourdomain.com
+      PHX_HOST: poof.proteus.works
     depends_on:
       postgres:
         condition: service_healthy
