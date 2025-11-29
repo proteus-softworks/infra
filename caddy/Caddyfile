@@ -3,7 +3,7 @@ poof.proteus.works {
 }
 
 weblog.proteus.works {
-    reverse_proxy poof:4321
+    reverse_proxy weblog:4321
 }
 
 # express.yourdomain.com {
