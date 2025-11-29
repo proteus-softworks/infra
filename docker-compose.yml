@@ -46,7 +46,7 @@ services:
     image: ghcr.io/proteus-softworks/weblog:latest
     restart: unless-stopped
     volumes:
-      - /var/weblog/content:/app/src/content
+      - /var/lib/weblog/content:/app/src/content
     networks:
       - web
       - internal
