@@ -2,6 +2,10 @@ poof.proteus.works {
     reverse_proxy poof:4000
 }
 
+weblog.proteus.works {
+    reverse_proxy poof:4321
+}
+
 # express.yourdomain.com {
 #     reverse_proxy express-app:3000
 # }
