@@ -6,10 +6,7 @@ weblog.proteus.works {
     reverse_proxy weblog:4321
 }
 
-# express.yourdomain.com {
-#     reverse_proxy express-app:3000
-# }
-# 
-# deno.yourdomain.com {
-#     reverse_proxy deno-app:8000
-# }
+files.proteus.works {
+    root * /var/www/mysite
+    file_server
+}
