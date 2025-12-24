@@ -1,0 +1,29 @@
+[tasks."ssh"]
+description = "Connect to ssh"
+run="""
+ssh -t -i $VPS_SSH_PUB_KEY deploy@$VPS_HOST
+"""
+
+[tasks."ssh:root"]
+description = "Connect to ssh"
+run="""
+ssh -t deploy@$VPS_HOST
+"""
+
+[tasks."caddy:logs"]
+description = "Watch prod logs"
+run="""
+mise ssh 'docker compose --project-directory "/opt/apps" logs -f caddy'
+"""
+
+[tasks."caddy:restart"]
+description = "Watch prod logs"
+run="""
+mise ssh 'docker compose --project-directory "/opt/apps" restart caddy'
+"""
+
+[tasks."files:pull"]
+description = "Watch prod logs"
+run="""
+mise ssh 'cd /home/deploy/files && git pull'
+"""
