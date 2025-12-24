@@ -38,7 +38,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "docker-compose.yml,caddy/Caddyfile"
+          source: "docker-compose.yml,Caddyfile"
           target: "/opt/apps"
 
       - name: Start services
