@@ -22,8 +22,8 @@ run="""
 mise ssh 'docker compose --project-directory "/opt/apps" restart caddy'
 """
 
-[tasks."files:pull"]
+[tasks."static:pull"]
 description = "Watch prod logs"
 run="""
-mise ssh 'cd /home/deploy/files && git pull'
+mise ssh 'cd /home/deploy/static && git pull'
 """
