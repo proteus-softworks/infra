@@ -7,6 +7,8 @@ weblog.proteus.works {
 }
 
 files.proteus.works {
-    root * /var/www/mysite
-    file_server browse
+    handle {
+        root * /var/www/mysite
+		file_server browse
+	}
 }
