@@ -6,7 +6,7 @@ weblog.proteus.works {
     reverse_proxy weblog:4321
 }
 
-files.proteus.works {
+static.proteus.works {
     root * /var/www/mysite
     file_server browse
 }
