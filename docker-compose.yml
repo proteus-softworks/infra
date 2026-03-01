@@ -43,6 +43,9 @@ services:
       - web
       - internal
 
+  app:
+    image: ghcr.io/proteus-softworks/tools:latest
+
   weblog:
     image: ghcr.io/proteus-softworks/weblog:latest
     restart: unless-stopped
