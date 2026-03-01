@@ -2,6 +2,10 @@ poof.proteus.works {
     reverse_proxy poof:4000
 }
 
+toolshed.proteus.works {
+    reverse_proxy weblog:4001
+}
+
 weblog.proteus.works {
     reverse_proxy weblog:4321
 }

@@ -43,8 +43,12 @@ services:
       - web
       - internal
 
-  app:
-    image: ghcr.io/proteus-softworks/tools:latest
+  toolshed:
+    image: ghcr.io/proteus-softworks/toolshed:latest
+    ports:
+      - "4000:4001"
+    networks:
+      - internal
 
   weblog:
     image: ghcr.io/proteus-softworks/weblog:latest
